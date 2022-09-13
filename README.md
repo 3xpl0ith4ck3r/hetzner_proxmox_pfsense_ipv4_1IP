@@ -4,24 +4,6 @@
 	<a href="https://www.proxmox.com"><img alt="Proxmox Logo" height="" width="300" src="https://www.proxmox.com/images/proxmox/Proxmox-logo.png"></a>
     <br>
 	<a href="https://www.pfsense.org/"><img alt="pfSense Logo" height="" width="300" src="https://upload.wikimedia.org/wikipedia/commons/2/2a/PfSense_logo.svg"></a>
-
-
-```
-    <br><br>
-	<img src="https://img.shields.io/badge/version-2.9.18-green.svg?style=for-the-badge">
-	<a href="https://hub.docker.com/repository/docker/jc21/nginx-proxy-manager">
-		<img src="https://img.shields.io/docker/stars/jc21/nginx-proxy-manager.svg?style=for-the-badge">
-	</a>
-	<a href="https://hub.docker.com/repository/docker/jc21/nginx-proxy-manager">
-		<img src="https://img.shields.io/docker/pulls/jc21/nginx-proxy-manager.svg?style=for-the-badge">
-	</a>
-	<a href="https://gitter.im/nginx-proxy-manager/community">
-		<img alt="Gitter" src="https://img.shields.io/gitter/room/nginx-proxy-manager/community?style=for-the-badge">
-	</a>
-	<a href="https://reddit.com/r/nginxproxymanager">
-		<img alt="Reddit" src="https://img.shields.io/reddit/subreddit-subscribers/nginxproxymanager?label=Reddit%20Community&style=for-the-badge">
-	</a>
-```
 </p>
 
 # Project Goal
