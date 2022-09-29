@@ -591,7 +591,7 @@ Let's move forward for LAN settings. Option 2 with interface 2.
 - DHCP we want for LAN -> y
 - Start address for IPv4 clients: 192.168.1.100
 - End address for IPv4 clients: 192.168.1.200
-- Revert HTTP as WebConfigurator protocl -> n
+- Revert HTTP as WebConfigurator protocl -> y
 
 Let's move forward for OPT1 settings. Option 2 with interface 3.
 
@@ -613,16 +613,47 @@ Please download any system you wanna install. In this case i decide to install L
 Based on Proxmox capabilities you can directly download thorugh the WebGUI.
 Got via the local storage, to the ISO folder and select **Download from URL**.
 
-Some changes for commit
+[https://lubuntu.me/downloads/](https://lubuntu.me/downloads/)
 
+Based on some webpages for download ISO's you will ether a link or an download button.
+If you find a download button you can right click on it and copy the link.
+
+With this you can paste it into the URL field and query the URL. In the most cases it will suceed. If not, please check the link you given.
+
+Afterwards don't forget to use the checksum and to verify it. We want use only secure systems.
+
+<img src="frontend/images/screenshots/Proxmox_Download_from_url.png">
+
+####Setup first virtual machine in LAN network
+
+Like the setup of the proxmox virtual machine we will install LUbuntu to use it inside the LAN network for further setup of the pfSense.
+
+<img src="frontend/images/screenshots/lubuntu_1.png">
+<img src="frontend/images/screenshots/lubuntu_2.png">
+<img src="frontend/images/screenshots/lubuntu_3.png">
+<img src="frontend/images/screenshots/lubuntu_4.png">
+<img src="frontend/images/screenshots/lubuntu_5.png">
+<img src="frontend/images/screenshots/lubuntu_6.png">
+<img src="frontend/images/screenshots/lubuntu_7.png">
+<img src="frontend/images/screenshots/lubuntu_8.png">
+
+After the VM start we will use the proxmox capabilities of the console to have access for an GUI guided installation.
+
+Some remarks:
+
+- the system will have no access to the internet. Any updates will not work.
+- you can setup like you want. This VM is will be only used for pfSense setup until the DMZ is created and useable for kinds of jump hosts or access via VPN is created.
+
+After sucessful installation we will access the pfsense via the available browser.
+
+<img src="frontend/images/screenshots/pfSense_GUI_login.png">
+
+The default credentials are **admin** and **pfsense**
+Based on many guidelines how to setup pfSense I will recommend you this source:
+[https://nguvu.org/pfsense/pfsense-baseline-setup/](https://nguvu.org/pfsense/pfsense-baseline-setup/)
 
 
 - [ ] ToDo: hier geht es weiter
-
-
-[https://lubuntu.me/downloads/](https://lubuntu.me/downloads/)
-
-<img src="frontend/images/screenshots/Proxmox_Download_from_url.png">
 
 
 
