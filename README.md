@@ -607,6 +607,15 @@ Clsoe the QEMU browser window.
 Now is the basic setup of pfsense done. Webconfiguratior access will be through the LAN network.
 For this we will as the next steps setup a further VM with GUI inside the LAN network to step into the easier configuration possiblities.
 
+For this we need setup a virtual machine inside the LAN network which is not headless.
+Please download any system you wanna install. In this case i decide to install LUbuntu.
+
+Based on Proxmox capabilities you can directly download thorugh the WebGUI.
+Got via the local storage, to the ISO folder and select **Download from URL**.
+
+Some changes for commit
+
+
 
 - [ ] ToDo: hier geht es weiter
 
