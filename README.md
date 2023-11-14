@@ -8,8 +8,8 @@
 </p>
 
 # Project Goal
-This project shall help everyone who is seeking a good solution and guideline to setup Proxmox into a Hetzner root or bare metal server. Also a setup with pfSense will be described. All settings will be done with an focus to security and to have a solid solution.
-In the world wide web exisiting many solutions and guidelines, but they are most outdated.
+This project shall help everyone who is seeking a good solution and guideline to setup Proxmox into a Hetzner root or bare metal server. Also, a setup with pfSense/OPNsense will be described. All settings will be done with a focus to security and to have a solid solution.
+In the world wide web existing many solutions and guidelines, but they are most outdated.
 
 <p align="center">
 	<a href="https://www.buymeacoffee.com/3xpl0ith4cr" target="_blank"><img src="http://public.jc21.com/github/by-me-a-coffee.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
@@ -48,21 +48,21 @@ and select your server. Afterwards you can go directly to your rescue tab.
 <img src="frontend/images/screenshots/Hetzner_Selected_Server.png">
 
 Select Linux as the Operating System and click on **Activate rescue system**
-For further details of the capabilities of the Hetzner Robot and Rescue System please follow the documentation from Hetzner. [https://docs.hetzner.com/robot]
+For further details of the capabilities of the Hetzner Robot and Rescue System please follow the documentation from Hetzner. [https://docs.hetzner.com/robot](https://docs.hetzner.com/robot)
 
 **Please use for all passwords an password manager**
 
 After the activation of the rescue system you have 60 minutes to reboot your server.
 Before you do this safe the shown credentials into your password manager.
 E.g.: [https://vault.bitwarden.com/#/login](https://vault.bitwarden.com/#/login) or self-hosted alternative [https://github.com/vineethmn/vaultwarden-docker-compose](https://github.com/vineethmn/vaultwarden-docker-compose)
-You will receive the user name **root** and the new **password** only working for the rescue system.
+You will receive the username **root** and the new **password** only working for the rescue system.
 
-Switch to the tab **Reset** and selecte the **Execute an automatic hardware reset**
+Switch to the tab **Reset** and select the **Execute an automatic hardware reset**
 
 #### Alternative if you have already access to your server via SSH you can normal reboot your server
 `shutdown -r now`
 
-Start directly after you logoff off your ssh session with an ping to your public IP address.
+Start directly after you log off of your ssh session with a ping to your public IP address.
 
 If you doesn't had a ssh connection just start an ping.
 
@@ -71,7 +71,7 @@ Use an terminal to logon with your ssh credentials.
 If you receive an identification change, than you had a previous connection to your server and you must get rid of the existing fingerprint.
 `ssh-keygen -f "/home/<user path>/.ssh/known_hosts" -R "xxx.xxx.xxx.xxx"`
 
-Afterwards you can access normaly and accept the new ECDSA key fingerprint of your server.
+Afterwards you can access normally and accept the new ECDSA key fingerprint of your server.
 You should see an standard welcome screen from Hetzner with some basic informations.
 
 <img src="frontend/images/screenshots/Hetzner_Rescue_1.png">
@@ -96,7 +96,7 @@ This is a standard procedure. It is absolutely enough to make only the **install
 
 **Please check the scope of the script before you use it. Learn it what stuff is done inside the scripts!**
 
-With ```./install-hetzner-nvme.sh prox1```i will start my installation. This is based on the standard welcome screen and the ordered hard drives or NVME storage inside the server.
+With ```./install-hetzner-nvme.sh prox2```i will start my installation. This is based on the standard welcome screen and the ordered hard drives or NVME storage inside the server.
 **You can also use an FQDN for your server if you now it already**
 
 The script is installing proxmox with the same tools Hetzner gives you ```InstallImage```
@@ -115,13 +115,17 @@ If everything has worked so far, you will see the default ssh response with your
 <img src="frontend/images/screenshots/Proxmox_first_SSH.png">
 
 We check if proxmox is running properly with `netstat - tunlp`
-We searching for the port **22** (SSH) and **8006** (GUI from Proxmox Proxy)
+We're searching for the port **22** (SSH) and **8006** (GUI from Proxmox Proxy)
 <img src="frontend/images/screenshots/Proxmox_Check_netstat.png">
+
+I prefer to use the ZFS solutions. In my case i use after the installation the script `wget https://raw.githubusercontent.com/CasCas2/xshok-proxmox/master/lvm-2-zfs.sh -c -O lvm-2-zfs.sh && chmod +x lvm-2-zfs.sh
+./lvm-2-zfs.sh`
 
 Please go to Part 3.
 
 
 ### Part 2 (alternative way) - Installation with standard Hetzner Installimage Script and selection of Proxmox
+- [ ] ToDo: Describe or link the default InstallImage way
 ### Part 2 (pure alternative way) - Installation of blank Debian 11 and installation of Proxmox from APT
 - [ ] ToDo: Describe or Link the default Hetzner way
 - [ ] ToDo: Describe or Link the default Debian 11 with APT way
@@ -130,10 +134,10 @@ Please go to Part 3.
 
 ### Part 3 - Secure your fresh Proxmox Server
 Based on the good post of TechnoTim and his "*Before I do anything on Linux, I do these 13 things*"
-[https://docs.technotim.live/posts/fist-13-things-linux/](https://docs.technotim.live/posts/fist-13-things-linux/)
+[https://docs.technotim.live/posts/fist-13-things-linux/](https://docs.technotim.live/posts/fist-13-things-linux/) - *current update from Aug 4, 2023*
 
 **But** based on the script the system is pure and many times updated.
-Also from my perspective I don't like to have a productive system with unattended-upgrades. For this a like to setup solutions with Ansible.
+Also, from my perspective I don't like to have a productive system with unattended-upgrades. For this a like to setup solutions with Ansible.
 - [ ] Describe and Link to Ansible Docker solution
 
 #### Account
@@ -156,17 +160,19 @@ Before we start check if ssh is properly installed on your local system.
 Execute`ssh` and `ssh-copy-id` without any parameter to check if this tools are installed.
 
 Build your ssh-keygen with `ssh-keygen`
-If your target will be only one client shall be possible to access the server via ssh than keep the filename as it is.
+If you wish that only one client shall be possible to access the server via ssh than keep the filename as it is.
 If not than change it to the client name. In my case **mx_client_id_rsa**
-After the keygen is done you will find two files. Please be shure you don't give your private key outside of your hands. For this we use the `ssh-copy-id` tool.
+After the keygen is done you will find two files. Please be sure you don't give your private key outside of your hands. For this we use the `ssh-copy-id` tool.
 
-`ssh-copy-id -i ~/.ssh/mx_client_id_rsa.pub user@144.76.69.153`
+`ssh-copy-id -i ~/.ssh/mx_client_id_rsa.pub user@xxx.xxx.xxx.xxx`
 
 Please check directly afterwards with a new terminal that the credentials are working and you can connect to the server.
 
+If you use Windows for administration of your server than please use Git for Windows [https://gitforwindows.org/](https://gitforwindows.org/)
+Included in the git bash you will find `ssh-copy-id`
+
 Check with `cat .ssh/authorized_keys` that only **one** key is available.
-If you add further key's, please check after copy that only the amoung you want are available.
-Logout from your user account ssh session.
+If you add further key's, please check after copy that only the among you want are available.
 
 Execute `nano /etc/ssh/sshd_config`and **add** the following parts.
 ```
@@ -238,12 +244,12 @@ Now let's check the explicit status of the sshd
 
 <img src="frontend/images/screenshots/Proxmox_fail2ban_check_ssh.png">
 
-My reccomendation would also to increase the bantime and further paramter.
+My recommendation would also to increase the bantime and further parameter.
 
 `sudo nano /etc/fail2ban/jail.conf`
 
 bantime.increment = true -> uncomment this line
-bantime.multiplier =  1 2 6 18 36 72 144 -> uncomment this line and change the values
+bantime.multiplier =  1 3 6 18 36 72 144 -> uncomment this line and change the values
 findtime = 10m -> change this value which fit's to you
 bantime = 10m -> change this value which fit's to you
 
@@ -279,17 +285,18 @@ Let's check the sshd again
 Now it will be time to restart the server.
 `sudo shutdowm -r now`
 
-Start directly a ping to the address and wait for response. Log in again.
-
+Start directly a ping to the address and wait for response and log in again.
 
 Check direclty with `sudo cat /var/log/fail2ban.log` the configuration.
 <img src="frontend/images/screenshots/Proxmox_fail2ban_server_restart.png">
 
 ### - LVS to ZFS script
 `mkdir Downloads`
+
 `cd Downloads`
 
 `sudo apt update`
+
 `sudo apt install git`
 
 `git clone https://github.com/CasCas2/proxmox-hetzner.git`
@@ -310,7 +317,7 @@ After restart check again the Pool status.
 #### Last step to finalize the proxmox setup, please execute the script install-post.sh
 
 For all further actions, we will change to the GUI.
-Therefore please check your IP address given by Hetzner and access to the port 8006.
+Therefore, please check your IP address given by Hetzner and access to the port 8006.
 `https://xxx.xxx.xxx.xxx:8006`
 
 In the beginning you will receive a warning.
@@ -321,8 +328,8 @@ As we know this is our server, we know what we are doing.
 
 <img src="frontend/images/screenshots/Proxmox_GUI_login.png">
 During each time you will be forwarded to the login.
-Please input your credentials rom the setup.
-Hopefully you have used an password manager.
+Please input your credentials from the setup.
+Hopefully you have used a password manager.
 For the first time we will login via root account.
 
 #####Deactivate the no subscription warning
@@ -339,6 +346,7 @@ With nano use ctrl+w for search and search for "No valid subscription"
 You will find h1 definition
 Search further for "invalidHtml"
 Comment the line with "me.update(me.invalidHtml)" with two backslash -> //
+
 <img src="frontend/images/screenshots/Proxmox_pvemanagerlib_no_subscription.png">
 
 Some lines below you will find the function of initComponent.
@@ -405,10 +413,11 @@ post-up sysctl -w net.ipv6.conf.all.forwarding=1
 # WAN Proxmox
 ```
 **IMPORTANT: change the SSH port to your setting.**
+**IMPORTANT: change the interface name to your iface name** ``-i enp0s31f6``
 
 The existing comment for route from your ip via the gateway is already implemented in the above lines. This comment is only to be shown in the proxmox WebGUI. But we need another comment. You can remove it.
 
-This lines will create pre-routing settings for TCP and UDP toforward directly to PfSense, expected SSH and the WebGUI port 8006.
+This lines will create pre-routing settings for TCP and UDP to forward directly to PfSense, expected SSH and the WebGUI port 8006.
 
 Please insert these line after your last perconfigured iface.
 
@@ -439,17 +448,18 @@ iface vmbr2 inet static
 	bridge-fd 0
 # DMZ pfSense
 ```
+**IMPORTANT: change the interface name to your iface name** ``-i enp0s31f6``
 
 Description of the changes.
 
-The VMBR0 is a Virtual Machine Bridge which create a extreme small network communicationg only between proxmox and pfsense and will act as the WAN interface from the PfSense perspective. With the subnet of /30 only two devices can operate.
+The VMBR0 is a Virtual Machine Bridge which create a minimal network communicating only between proxmox and pfsense and will act as the WAN interface from the PfSense/OPNsense perspective. With the subnet of /30 only two devices can operate.
 In this case only 10.10.10.1 (proxmox) and 10.10.10.2 (pfsense) can talk to each other.
-Based on the prerouting all communication will forwarded directly and only to the PfSense.
+Based on the pre-routing all communication will be forwarded directly and only to the PfSense/OPNsense.
 
-The VMBR1 will act as the connection for LAN network for PfSense
-The VMBR2 will act as the DMZ connection for PfSense
+The VMBR1 will act as the connection for LAN network for PfSense/OPNsense
+The VMBR2 will act as the DMZ connection for PfSense/OPNsense
 
-Thats all for now. Save and exit.
+That's all for now. Save and exit.
 
 Restart your server.
 `sudo shutdown -r now`
@@ -458,14 +468,14 @@ Restart your server.
 Refresh the network section in the Proxmox WebGui.
 
 <img src="frontend/images/screenshots/PfSense_Network_setup.png">
-At the end you should have a simliar setup.
+At the end you should have a similar setup.
 The comments recognize clearly what network will be used for what.
 
 
 
 
 
-####Download and setup PfSense
+#### Download and setup PfSense or OPNsense
 Login into your server via SSH.
 `cd /var/lib/vz/template/iso`
 
@@ -481,7 +491,7 @@ Go to your terminal and enter
 `sudo wget https://atxfiles.netgate.com/mirror/downloads/pfSense-CE-2.6.0-RELEASE-amd64.iso.gz`
 *The link changes based on the latest stable version*
 
-Also downlowd the SHA256 Checksum file
+Also, download the SHA256 Checksum file
 
 `sudo wget https://www.pfsense.org/hashes/pfSense-CE-2.6.0-RELEASE-amd64.iso.gz.sha256`
 
@@ -510,7 +520,7 @@ Let's create our first virtual machine.
 Click on **Create VM**
 
 As we are professionals, we use everytime the advanced options.
-Activate the Advanced check box.
+Activate the Advanced checkbox.
 
 VM ID will be suggested as 100. I recommend separate it to your machines and container.
 My recommendation is to use from 100 container and beginning of 200 virtual machines.
